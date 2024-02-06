@@ -1,0 +1,48 @@
+/* Import Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Your custom styles */
+.card {
+  position: relative;
+  width: 300px;
+  border: 1px solid #121111;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 40px;
+  display: inline-block;
+  
+}
+.card:hover{
+  border: 10px solid rgb(139, 187, 139);
+  box-shadow: 1cqmax;
+}
+
+.CardImg {
+
+  object-fit: cover; 
+  height: 300px; 
+  left: 50%;
+  position: sticky;
+}
+.cardTitle {
+  position: absolute;
+  top: 83%; 
+  left: 49.99%; 
+  transform: translate(-50%, -50%); 
+  background-color: rgba(30, 52, 60, 0.5); 
+  color: #f7f1f1; 
+  width: 100%; 
+  height: 35%;
+  font-weight: bold;
+ 
+  font-size: 30px; 
+  text-align:center;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+
+  
+}
+
+

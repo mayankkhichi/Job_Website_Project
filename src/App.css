@@ -1,0 +1,10 @@
+
+@media(max-width:50%)
+{
+    .Con
+    {
+       
+        flex-direction: column;
+        align-items: center;
+    }
+}
