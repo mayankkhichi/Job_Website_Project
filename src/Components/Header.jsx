@@ -17,10 +17,10 @@ function Header() {
       <div className=""><h3 >LOGO</h3></div>
 			<div className="flex justify-end">
 			<nav ref={navRef}>
-        <Link>
-				<a href="/#" className="bg-black text-white  py-3 rounded-md text-xl font-bold px-8 mx-5"> 
+    
+				<Link to="AllJobs" className="bg-black text-white  py-3 rounded-md text-xl font-bold px-8 mx-5"> 
           Search Job
-         </a></Link>
+         </Link>
 
          <Link to="Login">
 				<a href="/#"><button className="bg-black text-white px-6 py-3 rounded-md text-xl font-bold">
