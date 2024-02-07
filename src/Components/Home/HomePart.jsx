@@ -3,9 +3,16 @@ import Box from './Box'
 
 function HomePart() {
   return (
-    <div className=' h-[400px] w-full' >
-      <ul className='flex overflow-x-clip flex-wrap'>
+    <div className=' h-[400px]' >
+      <ul className='flex  flex-wrap justify-center'>
       <li> <Box> </Box> </li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
+      <li> <Box></Box></li>
       <li> <Box></Box></li>
       <li> <Box></Box></li>
       <li> <Box></Box></li>

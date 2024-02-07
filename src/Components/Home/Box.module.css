@@ -5,12 +5,13 @@
 
 /* Your custom styles */
 .card {
+  
   position: relative;
   width: 300px;
   border: 1px solid #121111;
   object-fit: cover;
   border-radius: 15px;
-  margin: 40px;
+  margin: 20px;
   display: inline-block;
   
 }

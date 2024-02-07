@@ -1,24 +1,25 @@
 import React from 'react'
 import Search from './Search.jsx'
 import HomePart from './HomePart.jsx'
+import style from './Home.module.css'
 
 
 function Home() {
   return (
     
- <div className="flex flex-wrap flex-row  stricky">
+ <div className={style.Main}>
   {/**JOB LINES COMPONENTS */}
   
   
       
         
-       <div className='w-[30%] relative flex-wrap'>
+   
          <Search></Search>
-         </div>
-         
+       
+       
         
 
-        <div className='w-[65%]  relative  flex h-full p-5 overflow-auto flex-wrap'>
+        <div className='flex     w-[75%] overflow-auto '>
             <HomePart></HomePart>
         </div>
   </div>

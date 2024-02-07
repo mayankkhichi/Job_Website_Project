@@ -13,7 +13,7 @@ function Header() {
 	};
 
 	return (
-    <header>
+    <header className="overflow-auto">
       <div className=""><h3 >LOGO</h3></div>
 			<div className="flex justify-end">
 			<nav ref={navRef}>
