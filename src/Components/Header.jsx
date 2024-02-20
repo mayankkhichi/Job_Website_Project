@@ -14,7 +14,13 @@ function Header() {
 
 	return (
     <header className="overflow-auto">
-      <div className=""><h3 >LOGO</h3></div>
+		<Link to="/">
+      <div className="  mx-auto flex justify-center items-center bottom-0">
+       <h3>
+         <img src="/public/Mainicon.png" className=" h-[200px] w-[250px] left-0" alt="Main Icon" />
+       </h3>
+      </div></Link>
+
 			<div className="flex justify-end">
 			<nav ref={navRef}>
     
@@ -23,14 +29,15 @@ function Header() {
          </Link>
 
          <Link to="Login">
-				<a href="/#"><button className="bg-black text-white px-6 py-3 rounded-md text-xl font-bold">
+				<button className="bg-black text-white px-6 py-3 rounded-md text-xl font-bold">
           For Candidate
-        </button></a></Link>
+        </button></Link>
 
-
-				<a href="/#"><button className="bg-white text-black px-6 py-3 rounded-md text-xl font-bold">
+                <Link to="CompanyLogin">
+				<button className="bg-white text-black px-6 py-3 rounded-md text-xl font-bold">
          For Company
-         </button></a>
+         </button></Link>
+
 
 
 				<button
@@ -38,12 +45,28 @@ function Header() {
 					onClick={showNavbar}>
 					<FaTimes />
 				</button>
+				<button
+				className="nav-btn nav-close-btn"
+					onClick={showNavbar}>
+					<FaTimes />
+
+				</button>
+				
 			</nav>
+			<div></div>
+			<Link to="StudentProfile">
+			
+				<img src="user.png" className="h-[50px]"></img>
+			
+			</Link>
+			
 			<button
 				className="nav-btn"	
 				onClick={showNavbar}>
 				<FaBars />
 			</button>
+
+			
       </div>
 		</header>
 	);

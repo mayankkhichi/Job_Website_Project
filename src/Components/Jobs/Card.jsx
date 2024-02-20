@@ -4,6 +4,7 @@ import { AiFillAmazonSquare } from "react-icons/ai";
 import { MdHomeFilled } from "react-icons/md";
 import { FaWallet } from "react-icons/fa";
 import { SlArrowRight } from "react-icons/sl";
+import { Link } from "react-router-dom";
 export default function Card() {
   const companyName = "Bajaj Allianz Insurance Company Limited";
   const jobRole = "Team Manager";
@@ -27,9 +28,9 @@ export default function Card() {
           <p className="fs-6 mb-0">{companyName}</p>
         </div>
         <div>
-          <button className={style.closeButton}>
+         <Link to="CompanyProfile"> <button className={style.closeButton}>
             <SlArrowRight />
-          </button>
+          </button> </Link>
         </div>
       </div>
       <div className={"d-flex align-items-center mt-2"}>

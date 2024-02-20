@@ -46,7 +46,7 @@ export default function CompanyLogin() {
           </form>
           <p className="mt-2 fs-5">
             Don't have an account?
-            <Link to="/companyregister" className="text-decoration-none">
+            <Link to="/CompanyRegister" className="text-decoration-none">
               Sign Up
             </Link>
           </p>
