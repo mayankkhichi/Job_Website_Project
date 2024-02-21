@@ -7,7 +7,7 @@ function StudentProfile() {
   return (
     <div className={styles.main} >
     <div className={styles.pro}>
-    <h2 className='text-4xl'>Profile Information</h2>
+    <h2 className='text-4xl font-bold'>Profile Information</h2>
         <hr/>
     <div className={styles.profile}>
       
@@ -16,7 +16,7 @@ function StudentProfile() {
           <img src='bhalot.jpg' className={styles.img}/>
           <h2>Name: bhalot</h2>
           <hr></hr>
-          <button className={styles.resume}>View Resume</button>
+          <button className={`${styles.resume} mt-6 ml-5 p-1`}>View Resume</button>
       </div>
       <div className={styles.line}></div>
       <hr/>
@@ -36,7 +36,7 @@ function StudentProfile() {
       <br/>
     
       <div className={styles.SecondPro}>
-        <h3>Skills</h3>
+        <h3 className='text-2xl font-bold'>Skills</h3>
         <hr/>
         <div className={styles.line}></div>
         <ul className={styles.Skillsitem}>
@@ -44,20 +44,20 @@ function StudentProfile() {
             <li key={item} className={styles.Items}>{item}</li>
           ))}
         </ul>
-        <button>Edit</button>
+        <button className='bg-black p-2 text-xl text-white rounded-[10px]'>Edit</button>
 
 
       </div>
        <br/>
 
       <div className={styles.SecondPro}>
-        <h3>Education</h3>
+        <h3 className='font-bold text-xl'>Education</h3>
         <hr/>
         <label>Post Graduation</label>
         <h4>College-National Institiude of Technology Bhopal MCA</h4>
         <label>Under Graduation</label>
         <h4>Vikram University Ujjain madhya pradesh</h4>
-        <button>Edit</button>
+        <button className='bg-black p-2 text-xl text-white rounded-[10px]'>Edit</button>
 
       </div>
         
@@ -71,7 +71,7 @@ function StudentProfile() {
         <h4>College-National Institiude of Technology Bhopal MCA</h4>
         <label>Under Graduation</label>
         <h4>Vikram University Ujjain madhya pradesh</h4>
-        <button>Edit</button>
+        <button className='bg-black p-2 text-xl text-white rounded-[10px]'>Edit</button>
       
       </div>
       

@@ -13,12 +13,10 @@
   border-radius: 15px;
   margin: 20px;
   display: inline-block;
+  background-size: cover;
   
 }
-.card:hover{
-  border: 10px solid rgb(139, 187, 139);
-  box-shadow: 1cqmax;
-}
+
 
 .CardImg {
 
@@ -26,7 +24,10 @@
   height: 300px; 
   left: 50%;
   position: sticky;
+  background-size: cover;
+  background-position: center;
 }
+
 .cardTitle {
   position: absolute;
   top: 83%; 
