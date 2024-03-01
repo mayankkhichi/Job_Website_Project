@@ -5,10 +5,26 @@ import { useRef } from "react";
 export default function Login() {
   const email = useRef();
   const password = useRef();
+  const users = [
+    { id: "user1@gmail.com", password: "123456" },
+    { id: "user2@gmail.com", password: "123456" },
+  ];
   function handleForm(event) {
     event.preventDefault();
-    console.log(email.current.value);
-    console.log(password.current.value);
+    console.log();
+    console.log();
+    const e=email.current.value;
+    const p=password.current.value;
+    const user = users.find((u) => u.id === e && u.password === p);
+    if (user) {
+      // window.location.href = "/";
+      navigate("/user");
+    } else {
+      alert("Wrong password or Email");
+    }
+
+    e.target.elements.email.value = "";
+    e.target.elements.password.value = "";
   }
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">

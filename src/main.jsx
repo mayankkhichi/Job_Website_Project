@@ -11,6 +11,7 @@ import CompanyLogin from './Components/Login/CompanyLogin.jsx'
 import CompanyRegister from './Components/Login/CompanyRegister.jsx'
 import StudentProfile from './Components/StudentProfile/StudentProfile.jsx'
 import CompanyProfile from './Components/Profile/CompanyProfile/CompanyProfile.jsx'
+import Hr from './Components/HrPanel/Hr.jsx'
 
 const router=createBrowserRouter([
   {
@@ -49,6 +50,13 @@ const router=createBrowserRouter([
         path:"AllJobs/CompanyProfile",
         element:<CompanyProfile></CompanyProfile>
       },
+      {
+        path:"Hr",
+        element:<Hr></Hr>
+      },{
+        path:"user",
+        element:<StudentProfile></StudentProfile>
+      }
 
     ]
   }
