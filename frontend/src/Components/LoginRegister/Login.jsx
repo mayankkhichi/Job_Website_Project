@@ -1,31 +1,37 @@
 import { FcGoogle } from "react-icons/fc";
 import { BsLinkedin } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { Link, json } from "react-router-dom";
+import { useRef, useState } from "react";
+import axios from "axios";
 export default function Login() {
-  const email = useRef();
-  const password = useRef();
-  const users = [
-    { id: "user1@gmail.com", password: "123456" },
-    { id: "user2@gmail.com", password: "123456" },
-  ];
-  function handleForm(event) {
-    event.preventDefault();
-    console.log();
-    console.log();
-    const e=email.current.value;
-    const p=password.current.value;
-    const user = users.find((u) => u.id === e && u.password === p);
-    if (user) {
-      // window.location.href = "/";
-      navigate("/user");
-    } else {
-      alert("Wrong password or Email");
-    }
+  // const [detail,setdetail]=useState(
+  //   {
+  //     email:"",
+  //     password:"",
+  //   }
+  // );
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  axios.defaults.withCredentials=true;
 
-    e.target.elements.email.value = "";
-    e.target.elements.password.value = "";
+  function handleForm(e) {
+    e.preventDefault();
+    console.log(email, password);
+    axios.post("/SeekerLogin", { email, password }).then((res) => {
+     
+      if (res.data.Status === "Success") {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        window.location.href = "/";
+      } else {
+        alert(res.data.Error);
+      }
+    });
   }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name == "email") setEmail(value);
+    else setPassword(value);
+  };
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div
@@ -73,7 +79,9 @@ export default function Login() {
                 type="email"
                 className="form-control"
                 placeholder="Email"
-                ref={email}
+                name="email"
+                onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -81,7 +89,9 @@ export default function Login() {
                 type="password"
                 className="form-control"
                 placeholder="Password"
-                ref={password}
+                name="password"
+                onChange={handleInputChange}
+                required
               />
               <small>
                 <Link to="/" className="text-decoration-none">

@@ -3,6 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import "./Styles/main.css";
 import { Link } from "react-router-dom";
 
+
 function Header() {
 	const navRef = useRef();
 
@@ -15,7 +16,7 @@ function Header() {
 	
 
 	return (
-    <header className="overflow-auto">
+    <header className="">
 		<Link to="/">
       <div className="  mx-auto flex justify-center items-center bottom-0">
        <h3>

@@ -44,7 +44,9 @@ const CompanyRegister = () => {
       headers:{"Content-Type":"multipart/form-data"},
     }).then
     ((res)=>{
-      if(res.data.Status=="Success") navigate("/login");
+      console.log(res);
+      if(res.data.Status=="Success") ;
+      window.location.href="/CompanyLogin";
     });
   };
 
@@ -151,6 +153,20 @@ const CompanyRegister = () => {
                   id="ContactNumber"
                   name="ContactNumber"
                   placeholder="Contact Number"
+                  required
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <div className="col">
+                <label className="form-label text-white">Company URL</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="CompWeb"
+                  name="CompWeb"
+                  placeholder="Company Official Website"
                   required
                   onChange={handleInputChange}
                 />

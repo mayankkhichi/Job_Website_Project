@@ -1,4 +1,5 @@
 // Register.jsx
+import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,23 +10,13 @@ const Register = () => {
     firstName: "",
     lastName: "",
     contactNumber: "",
+    AdharId:"",
     email: "",
     password: "",
     dob: "",
     gender: "",
-    resume: null,
+    ExYear:"",
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Handle form submission logic here
-    // Save the user data to your database or state
-
-    // After saving data, navigate to the login page
-    navigate("/login");
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -34,14 +25,45 @@ const Register = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      resume: file,
-    }));
+  const[resume,setresume]=useState(null);
+  const handleFileChange = (el) => {
+    const file=el.target.files[0];
+    setresume(file);
+    
   };
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    const formdata=new FormData();
+    formdata.append("firstName",formData.firstName);
+    formdata.append("lastName",formData.lastName);
+    formdata.append("contactNumber",formData.contactNumber);
+    formdata.append("AdharId",formData.AdharId);
+    formdata.append("email",formData.email);
+    formdata.append("password",formData.password);
+    formdata.append("dob",formData.dob);
+    formdata.append("gender",formData.gender);
+    formdata.append("ExYear",formData.ExYear);
+    formdata.append("file",resume);
+
+    console.log(formdata);
+    axios.post("/SeekerRegi",formdata,{
+      headers:{"Content-Type":"multipart/form-data"},
+    }).then
+    (
+      (res)=>
+      {
+        if(res.data.Status=="Success") navigate("/login");
+      }
+    );
+    
+  
+  };
+
+ 
+  
   return (
     <div className="p-10">
       <div className="container d-flex justify-content-center align-items-center">
@@ -102,6 +124,28 @@ const Register = () => {
               </div>
             </div>
 
+
+            <div className="row mb-3">
+              <div className="col">
+                <label
+                  htmlFor="AdharId"
+                  className="form-label text-white"
+                >
+                  Aadhar Number
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="AdharId"
+                  name="AdharId"
+                  placeholder="Aadhar Number"
+                  required
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+
             <div className="row mb-3">
               <div className="col">
                 <label htmlFor="email" className="form-label text-white">
@@ -159,6 +203,22 @@ const Register = () => {
             </div>
 
             <div className="row mb-3">
+
+            <div className="col">
+                <label htmlFor="ExYear" className="form-label text-white">
+                  Experience Year
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="ExYear"
+                  name="ExYear"
+                  placeholder="Enter Experience Years"
+                  required
+                  onChange={handleInputChange}
+                />
+              </div>
+
               <div className="col">
                 <label htmlFor="resume" className="form-label text-white">
                   Upload Resume
@@ -173,6 +233,7 @@ const Register = () => {
                   onChange={handleFileChange}
                 />
               </div>
+             
             </div>
             <div className="row mb-3">
               <div className="col">

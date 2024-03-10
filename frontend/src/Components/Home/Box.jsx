@@ -3,6 +3,8 @@ import styles from "./Box.module.css"
 
 function Box() {
   return (
+
+    
     
       
       <div className='border-2  w-[80%] h-[80%] rounded-[25px] mt-[40px]'>
