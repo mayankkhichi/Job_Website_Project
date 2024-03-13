@@ -1,87 +1,53 @@
 import { FcGoogle } from "react-icons/fc";
 import { BsLinkedin } from "react-icons/bs";
-import { Link, json } from "react-router-dom";
-import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import axios from "axios";
 export default function Login() {
-  // const [detail,setdetail]=useState(
-  //   {
-  //     email:"",
-  //     password:"",
-  //   }
-  // );
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  axios.defaults.withCredentials=true;
-
-  function handleForm(e) {
-    e.preventDefault();
-    console.log(email, password);
-    axios.post("/SeekerLogin", { email, password }).then((res) => {
-     
+  const email = useRef();
+  const password = useRef();
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
+  function handleForm(event) {
+    event.preventDefault();
+    const formData = {
+      email: email.current.value,
+      password: password.current.value,
+    };
+    axios.post("/user-login", formData).then((res) => {
       if (res.data.Status === "Success") {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        window.location.href = "/";
-      } else {
-        alert(res.data.Error);
-      }
+        const { JsId, pwd, AdharId, ...rest } = res.data.info;
+        localStorage.setItem("info", JSON.stringify(rest));
+        localStorage.setItem("token", res.data.token);
+        navigate("/");
+      } else alert(res.data.Error);
     });
+
+    email.current.value = "";
+    password.current.value = "";
   }
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name == "email") setEmail(value);
-    else setPassword(value);
-  };
+
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      <div
-        className="card text-white bg-dark mb-3 p-4"
-        style={{ width: "30%", height: "60%" }}
-      >
-        <center>
-          <div className="fs-5">Sign In</div>
-          <div className="flex gap-10 ms-40 mt-3">
-            <FcGoogle size={40} />
-            <BsLinkedin size={40} />
-          </div>
-        </center>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "20px 0",
-          }}
-        >
-          <div
-            style={{
-              borderBottom: "1px solid #ccc",
-              width: "40%",
-            }}
-          ></div>
-          <span
-            style={{ padding: "0 10px", color: "#555", fontWeight: "bold" }}
-          >
-            OR
-          </span>
-          <div
-            style={{
-              borderBottom: "1px solid #ccc",
-              width: "40%",
-            }}
-          ></div>
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="card text-white bg-dark p-4 w-full md:w-3/5 lg:w-2/5 xl:w-1/3">
+        <div className="text-center text-2xl mb-6">Sign In</div>
+        <div className="flex justify-center gap-6 mb-6">
+          <FcGoogle size={40} />
+          <BsLinkedin size={40} />
+        </div>
+        <div className="flex items-center justify-center mb-6">
+          <div className="border-b border-gray-400 w-1/3"></div>
+          <span className="px-4 text-gray-500">OR</span>
+          <div className="border-b border-gray-400 w-1/3"></div>
         </div>
         <div className="card-body">
-          {/* --------------------form started-------------------- */}
           <form onSubmit={handleForm}>
             <div className="mb-3">
               <input
                 type="email"
                 className="form-control"
                 placeholder="Email"
-                name="email"
-                onChange={handleInputChange}
-                required
+                ref={email}
               />
             </div>
             <div className="mb-3">
@@ -89,9 +55,7 @@ export default function Login() {
                 type="password"
                 className="form-control"
                 placeholder="Password"
-                name="password"
-                onChange={handleInputChange}
-                required
+                ref={password}
               />
               <small>
                 <Link to="/" className="text-decoration-none">
@@ -101,15 +65,14 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="btn btn-dark w-100 mb-2 bg-primary"
+              className="btn btn-dark w-full mb-2 bg-primary"
             >
               LOGIN
             </button>
           </form>
-          <p className="mt-2">
+          <p className="mt-2 text-center">
             Don't have an account?
-            <Link to="/register" className="text-decoration-none">
-              {" "}
+            <Link to="/register" className="text-decoration-none ml-1">
               Sign Up
             </Link>
           </p>

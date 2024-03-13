@@ -1,12 +1,13 @@
 // Register.jsx
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AllFunction } from "../store/Store";
 
 const Register = () => {
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
+  const{insertId,handleInsertId}=useContext(AllFunction);
+    const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     contactNumber: "",
@@ -17,22 +18,9 @@ const Register = () => {
     gender: "",
     ExYear:"",
   });
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+ 
 
   const[resume,setresume]=useState(null);
-  const handleFileChange = (el) => {
-    const file=el.target.files[0];
-    setresume(file);
-    
-  };
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -49,17 +37,35 @@ const Register = () => {
     formdata.append("file",resume);
 
     console.log(formdata);
-    axios.post("/SeekerRegi",formdata,{
+    axios.post("/user-register",formdata,{
       headers:{"Content-Type":"multipart/form-data"},
     }).then
     (
       (res)=>
       {
-        if(res.data.Status=="Success") navigate("/login");
+        if(res.data.Status=="Success") {
+          handleInsertId(res.data.id);
+        navigate("/login");
+        }
+        else alert(res.data);
       }
     );
     
   
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+
+  const handleFileChange = (el) => {
+    const file=el.target.files[0];
+    setresume(file);
+    
   };
 
  

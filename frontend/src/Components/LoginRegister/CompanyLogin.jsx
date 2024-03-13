@@ -1,31 +1,36 @@
 
 
-import { Link, json, useNavigate } from "react-router-dom";
-import { useNavigation } from "../store/NavigationConext";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AllFunction } from "../store/Store";
+
 export default function CompanyLogin() {
   
   const navigate = useNavigate();
-  const [email,Setemail]=useState("");
-  const [password,Setpassword]=useState("");
-  axios.defaults.withCredentials=true;
+ const {handleHrData}=useContext(AllFunction);
 
   function handleSubmit(e){
     e.preventDefault();
-    console.log(email,password);
+    const email=e.target.elements.email.value;
+    const password=e.target.elements.password.value;
     axios.post("/HrLogin",{email,password}).then((res)=>
     {
       if(res.data.Status==="Success")
       {
-           localStorage.setItem("token",res.data.token);
-           window.location.href="/"
+        const { HrID, HrPwd, companyLogo, AdharId, ...rest } = res.data.info;
+        localStorage.setItem("info", JSON.stringify(rest));//storing info of hr in localstorage
+        localStorage.setItem("token", res.data.token);//storing token in local storage
+        handleHrData(JSON.parse(localStorage.getItem("info")));//taking info of hr from localstorage and sending to the handlehrdata in store.jsx, where parse is converting it into js object for store.
+        navigate("/Hr")
       }
       else{
           alert(res.data.Error);
 
       }
-    })
+    });
+    e.target.elements.email.value="";
+    e.target.elements.password.value="";
 
   };
 
@@ -44,9 +49,7 @@ export default function CompanyLogin() {
                 type="email"
                 className="form-control"
                 placeholder="Email"
-                
-          
-                onChange={(e)=>Setemail(e.target.value)}
+                name="email"
               />
             </div>
             <div className="mb-3">
@@ -54,11 +57,10 @@ export default function CompanyLogin() {
                 type="password"
                 className="form-control"
                 placeholder="Password"
-                
-                onChange={(e)=>Setpassword(e.target.value)}
+                name="password"
               />
               <small>
-                <Link to="/" className="text-decoration-none d-block pt-2">
+                <Link to="#" className="text-decoration-none d-block pt-2">
                   Forgot password?
                 </Link>
               </small>

@@ -1,21 +1,33 @@
-import React from 'react'
-import styles from './UserDetils.module.css'
-
+import React from "react";
+import "./education.css";
+import { FaRegEdit } from "react-icons/fa";
 function Education() {
   return (
-    <div>
-      <div className={styles.SecondPro}>
-      <h3 className='font-bold text-xl'>Education</h3>
-      <hr/>
-      <label>Post Graduation</label>
-      <h4>College-National Institiude of Technology Bhopal MCA</h4>
-      <label>Under Graduation</label>
-      <h4>Vikram University Ujjain madhya pradesh</h4>
-      <button className='bg-black p-2 text-xl text-white rounded-[10px]'>Edit</button>
-
+    <div className="education1">
+      <div className="d-flex justify-content-between pe-3">
+        <h1 className="fs-5  fw-bold">Post Graduation</h1>
+        <button>
+          <FaRegEdit />
+        </button>
+      </div>
+      <div className="row">
+        <div className="col-3">Institute Name</div>
+        <div className="col-8">DAVV</div>
+      </div>
+      <div className="row">
+        <div className="col-3">Start date to End Date</div>
+        <div className="col-8">11/01/2022 to 11/03/2022</div>
+      </div>
+      <div className="row">
+        <div className="col-3">Percentage</div>
+        <div className="col-8">82%</div>
+      </div>
+      <div className="row">
+        <div className="col-3">Certificate</div>
+        <div className="col-8">View</div>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default Education
+export default Education;

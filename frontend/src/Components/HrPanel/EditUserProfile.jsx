@@ -1,12 +1,14 @@
+import { AllFunction } from "../store/Store";
 import Edit from "./Edit";
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import axios from "axios";
 export default function EditUserProfile() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
+  const { hrData } = useContext(AllFunction);
+  const [name, setName] = useState(hrData.HrName);
+  const [email, setEmail] = useState(hrData.HrEmail);
+  const [address, setAddress] = useState(hrData.CompADD);
+  const [phone, setPhone] = useState(hrData.CompPhone);
+  const [company, setCompany] = useState(hrData.CompName);
 
   const editDetails = (type, value) => {
     if (type === "Name") {
@@ -22,28 +24,51 @@ export default function EditUserProfile() {
     }
   };
 
+  const updateProfile = () => {
+    axios
+      .post("/update-hr-profile", { name, email, address, phone, company })
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          let prevData = JSON.parse(localStorage.getItem("info"));
+
+          // Check if prevData is an array, if so, take the first element
+          if (Array.isArray(prevData)) {
+            prevData = prevData[0];
+          }
+
+          prevData.HrName = name;
+          prevData.HrEmail = email;
+          prevData.CompADD = address;
+          prevData.CompName = company;
+          prevData.CompPhone = phone;
+          localStorage.setItem("info", JSON.stringify(prevData));
+          location.reload(true);
+        }
+      });
+  };
   return (
     <div className="container mt-5">
       <div className="row p-3">
-        <Edit type="Name" values={name} editDetails={editDetails} />
+        <table>
+          <tbody>
+            <Edit type="Name" values={name} editDetails={editDetails} />
+
+            <Edit type="Email" values={email} editDetails={editDetails} />
+
+            <Edit type="Address" values={address} editDetails={editDetails} />
+
+            <Edit type="Phone" values={phone} editDetails={editDetails} />
+
+            <Edit type="Company" values={company} editDetails={editDetails} />
+          </tbody>
+        </table>
         <center>
-          <hr style={{ width: "550px" }} />
-        </center>
-        <Edit type="Email" values={email} editDetails={editDetails} />
-        <center>
-          <hr style={{ width: "550px" }} />
-        </center>
-        <Edit type="Address" values={address} editDetails={editDetails} />
-        <center>
-          <hr style={{ width: "550px" }} />
-        </center>
-        <Edit type="Phone" values={phone} editDetails={editDetails} />
-        <center>
-          <hr style={{ width: "550px" }} />
-        </center>
-        <Edit type="Company" values={company} editDetails={editDetails} />
-        <center>
-          <hr style={{ width: "550px" }} />
+          <button
+            className="btn btn-primary mt-5 w-[80%]"
+            onClick={updateProfile}
+          >
+            Update profile
+          </button>
         </center>
       </div>
     </div>

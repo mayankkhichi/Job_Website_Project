@@ -9,9 +9,9 @@ import MainJobs from "./Components/Jobs/MainJobs.jsx"
 import Register from "./Components/LoginRegister/Register.jsx"
 import CompanyLogin from './Components/LoginRegister/CompanyLogin.jsx'
 import CompanyRegister from './Components/LoginRegister/CompanyRegister.jsx'
-import StudentProfile from './Components/UserPanel/StudentProfile.jsx'
 import Hr from './Components/HrPanel/Hr.jsx'
 import JobProfile from './Components/Jobs/JobDetails/JobProfile.jsx'
+import Profile from './Components/UserPanel/Profile.jsx'
 
 const rout=createBrowserRouter([
   {
@@ -42,10 +42,7 @@ const rout=createBrowserRouter([
         path:"CompanyRegister",
         element:<CompanyRegister></CompanyRegister>
       },
-      {
-        path:"StudentProfile",
-        element:<StudentProfile></StudentProfile>
-      },
+    
       {
         path:"/AllJobs/apply",
         element:<JobProfile></JobProfile>
@@ -55,7 +52,7 @@ const rout=createBrowserRouter([
         element:<Hr></Hr>
       },{
         path:"user",
-        element:<StudentProfile></StudentProfile>
+        element:<Profile></Profile>
       }
 
     ]

@@ -5,7 +5,7 @@ import axios from "axios";
 
 const CompanyRegister = () => {
   const navigate = useNavigate();
-
+ 
   const [formData, setFormData] = useState({
     Name: "",    
     email: "",
@@ -40,12 +40,13 @@ const CompanyRegister = () => {
     formdata.append("CompWeb",formData.CompWeb);
     formdata.append("logo",logo);//this is logo 
 
-    axios.post("/postcompdata",formdata,{
-      headers:{"Content-Type":"multipart/form-data"},
+    axios.post("/hr-register",formdata,{
+      headers:{"Content-Type":"multipart/form-data"},//not necessory but use when need to send the files.
     }).then
     ((res)=>{
       console.log(res);
       if(res.data.Status=="Success") ;
+      
       window.location.href="/CompanyLogin";
     });
   };
@@ -61,12 +62,13 @@ const CompanyRegister = () => {
  
 
   return (
-    <div className="p-10">
-      <div className="container d-flex justify-content-center align-items-center">
+    <div className="p-10 ">
+      <div className=" d-flex  justify-content-center align-items-center">
         <div
           className="card p-4"
           style={{ width: "500px", background: "#333" }}
         >
+          
           <center>
             <h3 className="text-white mb-4">Registration Form</h3>
           </center>
