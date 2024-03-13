@@ -1,22 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Card.module.css";
 import { AiFillAmazonSquare } from "react-icons/ai";
 import { MdHomeFilled } from "react-icons/md";
 import { FaWallet } from "react-icons/fa";
 import { SlArrowRight } from "react-icons/sl";
 import { Link } from "react-router-dom";
-export default function Card() {
-  const companyName = "Bajaj Allianz Insurance Company Limited";
-  const jobRole = "Team Manager";
-  const jobType = "Work from Home";
-  const jobTIme = "Full time";
-  const textRequire = "No test required";
-
-  const [urgently, setUrgently] = useState(true);
-  const [fastHrReply, setFastHr] = useState(true);
+export default function Card({obj}) {
+  const companyName = obj.CompName;
+  const jobRole = obj.JobTitle;
+  const jobType = obj.workLocation;
+  const jobTIme = obj.JobType;
+  const minimum = obj.Salary;
   const [wfh, setWFH] = useState(true);
+ 
+
   return (
-    <div className={`${style.card} shadow-xl`}>
+    <div className={`${style.card} `}>
       <div
         className={`d-flex align-items-center justify-content-between ${style.header}`}
       >
@@ -39,11 +38,11 @@ export default function Card() {
       </div>
       <div className={`d-flex align-items-center ${style.salary}`}>
         <FaWallet className="me-2 mt-1" />
-        <p className="mb-0 mt-1">₹19,000 - ₹41,500</p>
+        <p className="mb-0 mt-1">₹{minimum}</p>
       </div>
       <div className={style.time}>
-        <p1>{jobTIme}</p1>
-        <p2>{textRequire}</p2>
+      <p className="me-2 ms-1">{jobTIme}</p>
+        <p className="ms-2">Test required</p>
       </div>
       <div className={style.extra}>
         <p1>Urgently hiring</p1>

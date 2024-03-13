@@ -330,3 +330,14 @@ app.post(
     });
   });
   
+
+  //For jobs data
+
+  app.get("/allJobs", (req, res) => {
+    const sql =
+      "SELECT job.JobTitle, job.workLocation, job.JobType, job.Salary, HR.CompName FROM job INNER JOIN HR ON job.HrID = HR.HrID";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      return res.json({ Status: "Success", jobs: result });
+    });
+  });

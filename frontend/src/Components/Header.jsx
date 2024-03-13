@@ -49,6 +49,11 @@ function Header() {
               Available Job
             </Link>
           )}
+
+
+         
+
+
           {userAuth && (
             <Link to="/user">
               <button className={style.btn}>
@@ -71,8 +76,11 @@ function Header() {
                 </button>
               </Link>
             )}
-          </>
-          <>
+
+
+
+
+          
             {!userAuth && !hrAuth && (
               <Link to="companylogin">
                 <button className={style.btn}>
@@ -80,6 +88,9 @@ function Header() {
                 </button>
               </Link>
             )}
+
+
+
           </>
           <button className="nav-btn nav-close-btn" onClick={showNavbar}>
             <FaTimes />
